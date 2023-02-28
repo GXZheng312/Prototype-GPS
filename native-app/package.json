@@ -1,6 +1,6 @@
 {
-  "name": "moesland",
-  "version": "1.0.0",
+  "name": "native-app",
+  "version": "0.1.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "clean": "^4.0.2",
     "expo": "~48.0.4",
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",

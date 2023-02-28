@@ -1,2 +1,2 @@
 # Prototype-GPS
-Vergeet niet npm install te doen :)
+Vergeet niet npm install te doen
