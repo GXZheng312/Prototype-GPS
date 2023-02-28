@@ -1,8 +1,7 @@
 const express = require('express');
 const app = express();
+const mongodb = require('./services/mongodb')();
 
-app.get('/', (req, res) => {
-    res.send('hello');
-});
+app.use('/', require('./routes'));
 
 module.exports = app;
