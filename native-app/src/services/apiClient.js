@@ -1,7 +1,10 @@
+import { LOCALHOST_IP } from '@env';
+
 export async function getLocationData() {
     try {
+        console.log("IP:" + LOCALHOST_IP);
         const response = await fetch(
-            'http://192.168.2.12:5000/api/parade/gps-location/1?format=json',
+            'http://' + LOCALHOST_IP + ':5000/api/parade/gps-location/1?format=json',
             {}
         );
         const json = await response.json();

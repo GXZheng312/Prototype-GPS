@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Text, View } from "react-native";
 import { getLocationData } from "../services/apiClient";
-import { LOCALHOST_IP } from '@env';
 
 export default () => {
 
