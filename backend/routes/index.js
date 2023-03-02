@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 //add here all other routes
-router.use('/location', require('./location'));
+router.use('/api/location', require('./api/location'));
 router.use('/api/parade', require('./api/parade'));
 
 module.exports = router;
