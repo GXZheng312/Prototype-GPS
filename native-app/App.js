@@ -8,13 +8,15 @@ import {
   View,
   TouchableOpacity,
   Alert,
-  ImageBackground
+  ImageBackground,
+  Image
 } from 'react-native';
 import {
   Camera
 } from 'expo-camera';
 
 let camera;
+let currentPhoto;
 
 export default function App() {
   const [startCamera, setStartCamera] = React.useState(false);
@@ -27,7 +29,7 @@ export default function App() {
     const {
       status
     } = await Camera.requestCameraPermissionsAsync();
-    console.log(status);
+    
     if (status === 'granted') {
       setStartCamera(true);
     } else {
@@ -37,16 +39,21 @@ export default function App() {
 
   const __takePicture = async () => {
     const photo = await camera.takePictureAsync();
-    console.log(photo);
+
     setPreviewVisible(true);
     setCapturedImage(photo);
+
+    currentPhoto = photo;
   };
 
-  const __savePhoto = () => { };
+  const __savePhoto = () => {
+    __showPhotoOnScreen();
+  };
 
   const __retakePicture = () => {
     setCapturedImage(null);
     setPreviewVisible(false);
+
     __startCamera();
   };
 
@@ -67,6 +74,28 @@ export default function App() {
       setCameraType('back');
     }
   };
+
+  const __showPhotoOnScreen = () => {
+    setStartCamera(false);
+  };
+
+  if (currentPhoto != null) {
+    return (React.createElement(View, {
+      style: styles.container
+    },
+      React.createElement(Image, {
+        style: {
+          flex: 1,
+          width: '80%',
+          height: '80%',
+          resizeMode: 'contain'
+        },
+        source: {
+          uri: currentPhoto && currentPhoto.uri
+        }
+      })
+    ));
+  }
 
   return (React.createElement(View, {
     style: styles.container
@@ -193,7 +222,6 @@ export default function App() {
       style: "auto"
     })));
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -208,7 +236,6 @@ const CameraPreview = ({
   retakePicture,
   savePhoto
 }) => {
-  console.log('sdsfds', photo);
   return (React.createElement(View, {
     style: {
       backgroundColor: 'transparent',
@@ -253,7 +280,7 @@ const CameraPreview = ({
                 color: '#fff',
                 fontSize: 20
               }
-            }, "Re-take")),
+            }, "Retake")),
           React.createElement(TouchableOpacity, {
             onPress: savePhoto,
             style: {
@@ -268,5 +295,5 @@ const CameraPreview = ({
                 color: '#fff',
                 fontSize: 20
               }
-            }, "save photo")))))));
+            }, "Save")))))));
 };
