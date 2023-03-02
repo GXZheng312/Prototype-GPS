@@ -10,4 +10,4 @@ To get started with this project, follow these steps:
 Once the server is running, you should be able to access it at __port 5000__.
 
 ## API Documentation
-For detailed documentation of the API, please see the *COMMING SOON*.
+For detailed documentation of the API, please see the documentation (*COMMING SOON*).
