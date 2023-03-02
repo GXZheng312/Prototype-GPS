@@ -26,7 +26,7 @@ function Form() {
 function useSubmitForm(longitude, latitude, range) {
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const response = await fetch('http://localhost:3000/api/location', {  
       method: 'POST',
       headers: {
@@ -38,11 +38,7 @@ function useSubmitForm(longitude, latitude, range) {
         range
       })
     });
-  
-    const data = await response.json();
-    console.log(data);
   };
-
   return handleSubmit;
 }
 

@@ -6,23 +6,16 @@ router.get('/', function (req, res, next) {
     res.send('hello from home location');
 });
 
-// create a route for POST requests to /locations
+router.use(express.json());
+
 router.post('/', async (req, res) => {
     try {
-        const { longitude, latitude, range } = req.body;
-
-        // create a new Location model instance with the form data
-        const Location = mongoose.model('Location');
-        const newLocation = new Location({ longitude, latitude, range });
-
-        // save the new location to the database
-        const savedLocation = await newLocation.save();
-
-        res.json(savedLocation);
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Something went wrong');
+      const newData = new Location(req.body);
+      await newData.save();
+      res.status(201).json(newData);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
     }
-});
+  });
 
 module.exports = router;
