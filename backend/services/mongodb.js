@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 module.exports = () => {
 	if(mongoose.connection.readyState == 0){
-		const uri = 'mongodb://0.0.0.0:27017';
+		const uri = 'mongodb://0.0.0.0:27017/gpsDB';
 		const options = {
-			db: { native_parser: true },
+			db: { native_parser: true },	
 			server: { poolSize: 5 },
 			replset: { rs_name: 'myReplicaSetName' },
 			user: 'admin',
