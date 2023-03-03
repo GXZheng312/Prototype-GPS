@@ -5,7 +5,7 @@ import {useState, useEffect} from 'react';
 import * as Location from 'expo-location';
 
 
-export default function App() {
+export default () => {
   const [locationLatitude, setLocationLatitude] = useState();
   const [locationLongitude, setLocationLongitude] = useState();
   const [locationAccuracy, setLocationAccuracy] = useState();
@@ -35,12 +35,15 @@ export default function App() {
   }, []);
 
   const fetchData = async () => {
+    FakeData
+  };
+
+  const FakeData = () => {
     setMoeslandLatitude(37.41)
     setMoeslandLongitude(-122.06)
     let moeslandRange = 1000.00;
     setMoeslandRange(moeslandRange)
-
-  };
+  }
 
   const checkIfInRange = async () => {
     let status = await Location.requestForegroundPermissionsAsync();
