@@ -1,9 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const Location = require('../../../models/location');
-const mongoose = require('mongoose');
 
 router.use(express.json());
+
+
+router.get('/', async (req, res) => {
+	try {
+		Location.find({})
+				.then(data => {
+					return res.json(data[data.length - 1]);
+				});
+	} catch (err) {
+		res.status(500).json({ message: err.message });
+	}
+});
 
 router.post('/', async (req, res) => {
 	try {

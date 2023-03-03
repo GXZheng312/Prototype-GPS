@@ -3,6 +3,7 @@ import { StyleSheet, Text, View,Alert,Button} from 'react-native';
 
 import {useState, useEffect} from 'react';
 import * as Location from 'expo-location';
+import { getLocationData } from '../services/apiClient';
 
 
 export default () => {
@@ -35,10 +36,22 @@ export default () => {
   }, []);
 
   const fetchData = async () => {
-    FakeData
+    const data = await getLocationData();
+    console.log(data);
+    if(data != null) {
+      setData(data);
+      return;
+    }
+    fakeData();
   };
 
-  const FakeData = () => {
+  const setData = (data) => {
+    setMoeslandLatitude(data.latitude)
+    setMoeslandLongitude(data.longitude)
+    setMoeslandRange(data.range)
+  }
+
+  const fakeData = () => {
     setMoeslandLatitude(37.41)
     setMoeslandLongitude(-122.06)
     let moeslandRange = 1000.00;
