@@ -38,10 +38,8 @@ export default function App() {
     //faking fetching data from them backend
     let moeslandLatitude = 37.4226711;
     setMoeslandLatitude(37.41)
-
     let moeslandLongitude = -122.0849872;
     setMoeslandLongitude(-122.06)
-
     let moeslandRange = 1000.00;
     setMoeslandRange(moeslandRange)
 
