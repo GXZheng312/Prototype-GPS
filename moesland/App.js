@@ -7,9 +7,11 @@ import * as Location from 'expo-location';
 
 export default function App() {
   const [location, setLocation] = useState();
-  const [tochtLocation, setTochtLocation] = useState();
-  console.log("Running");
-  
+  const [moeslandLatitude, setMoeslandLatitude] = useState();
+  const [moeslandLongitude, setMoeslandLongitude] = useState();
+  const [moeslandRange, setMoeslandRange] = useState();
+
+
   useEffect(() => {
     const getPermissions = async () => {
       let status = await Location.requestForegroundPermissionsAsync();
@@ -17,9 +19,10 @@ export default function App() {
       console.log(status.granted);
 
       if(status.granted){
-        let currentLocation = await Location.getCurrentPositionAsync({});
-        setLocation(currentLocation);
         console.log("Status is granted!");
+        let currentLocation = await Location.getCurrentPositionAsync({}); 
+        console.log(location);
+        setLocation(currentLocation);
       }
       else if(!status.granted){
         console.log("The permission to use geolocation has not been grated");
@@ -32,21 +35,42 @@ export default function App() {
   }, []);
 
   const fetchData = async () => {
-    
-    };
+    //faking fetching data from them backend
+    let moeslandLatitude = 37.4226711;
+    setMoeslandLatitude(37.4226711)
+    console.log(moeslandLatitude);
 
-    const checkIfInRange = async () => {
+    let moeslandLongitude = -122.0849872;
+    setMoeslandLongitude(-122.0849872)
+    console.log(moeslandLongitude);
+
+    let moeslandRange = 1000;
+    setMoeslandRange(moeslandRange)
+    console.log(moeslandRange);
+
+  };
+
+  const checkIfInRange = async () => {
+    
+    if()
+
+    if(true)
+    {
+      alert("you have succesfully voted for your favorite team!")
+    }
+    else{
       alert("you are outside te range to vote")
-    };
+    }
+  };
 
   const vote = async () => {
     fetchData();
     checkIfInRange();
-    };
+  };
 
   return (
     <View style={styles.container}>
-      <Button title="Reverse Geocode Current Location" onPress={vote} />
+      <Button title="Stemmen" onPress={vote} />
       <StatusBar style="auto" />
     </View>
   );
