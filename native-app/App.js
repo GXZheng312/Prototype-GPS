@@ -51,6 +51,8 @@ export default function App() {
   };
 
   const __retakePicture = () => {
+    currentPhoto = null;
+
     setCapturedImage(null);
     setPreviewVisible(false);
 
