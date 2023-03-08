@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Text, View } from "react-native";
-import { getLocationData } from "../services/apiClient";
+import { getLocationDebugData } from "../services/apiClient";
 
 export default () => {
 
@@ -13,7 +13,7 @@ export default () => {
     }, [locationData]); 
 
     const locationGet = async () => {
-        const data = await getLocationData();
+        const data = await getLocationDebugData();
         console.log(data);
         setLocationData(data);
     };

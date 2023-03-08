@@ -3,9 +3,10 @@ import { StyleSheet, Text, View,Alert,Button} from 'react-native';
 
 import {useState, useEffect} from 'react';
 import * as Location from 'expo-location';
+import { getLocationData } from '../services/apiClient';
 
 
-export default function App() {
+export default () => {
   const [locationLatitude, setLocationLatitude] = useState();
   const [locationLongitude, setLocationLongitude] = useState();
   const [locationAccuracy, setLocationAccuracy] = useState();
@@ -35,12 +36,27 @@ export default function App() {
   }, []);
 
   const fetchData = async () => {
+    const data = await getLocationData();
+    console.log(data);
+    if(data != null) {
+      setData(data);
+      return;
+    }
+    fakeData();
+  };
+
+  const setData = (data) => {
+    setMoeslandLatitude(data.latitude)
+    setMoeslandLongitude(data.longitude)
+    setMoeslandRange(data.range)
+  }
+
+  const fakeData = () => {
     setMoeslandLatitude(37.41)
     setMoeslandLongitude(-122.06)
     let moeslandRange = 1000.00;
     setMoeslandRange(moeslandRange)
-
-  };
+  }
 
   const checkIfInRange = async () => {
     let status = await Location.requestForegroundPermissionsAsync();
